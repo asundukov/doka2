@@ -15,7 +15,7 @@ import javax.inject.Inject;
 @Service
 public class BuildingArea implements Area {
 
-    private final static Logger log = LoggerFactory.getLogger(BuildingArea.class);
+    private static final Logger log = LoggerFactory.getLogger(BuildingArea.class);
 
     @Inject
     private BuildArea buildArea;

@@ -23,7 +23,7 @@ public class MainArea implements Area {
     @Inject
     private SearchArea searchArea;
 
-    private final static String MESSAGE = "%heroName%, вы стоите посреди небольшой площади вашего города. " +
+    private static final String MESSAGE = "%heroName%, вы стоите посреди небольшой площади вашего города. " +
             "Перед вами необъятный мир, но внутренне вы понимаете что вам интересно только " +
             "строить школы, искать девайсы и... убивать.\n" +
             "\n" +

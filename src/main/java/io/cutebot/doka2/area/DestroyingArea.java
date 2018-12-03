@@ -13,7 +13,7 @@ import javax.inject.Inject;
 
 @Service
 public class DestroyingArea implements Area {
-    private final static Logger log = LoggerFactory.getLogger(DestroyingArea.class);
+    private static final Logger log = LoggerFactory.getLogger(DestroyingArea.class);
 
     @Inject
     private MainArea mainArea;
