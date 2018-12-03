@@ -1,0 +1,80 @@
+<configuration>
+
+    <property name="LOGS_DIR" value="${logsDir}" />
+
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%20thread]) %highlight(%-5level) %logger{36}.%M - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+    <appender name="Sentry" class="io.sentry.logback.SentryAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+    </appender>
+
+    <appender name="FileInfoAppender" class="ch.qos.logback.core.FileAppender">
+        <encoder>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%20thread] %-5level %logger{36}.%M - %msg%n</pattern>
+        </encoder>
+        <File>${LOGS_DIR}/info.log</File>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>
+
+    <appender name="FileWarnAppender" class="ch.qos.logback.core.FileAppender">
+        <encoder>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%20thread] %-5level %logger{36}.%M - %msg%n</pattern>
+        </encoder>
+        <File>${LOGS_DIR}/warn.log</File>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+    </appender>
+
+    <appender name="FileErrorAppender" class="ch.qos.logback.core.FileAppender">
+        <encoder>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%20thread] %-5level %logger{36}.%M - %msg%n</pattern>
+        </encoder>
+        <File>${LOGS_DIR}/error.log</File>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+    </appender>
+
+    <appender name="TelegramClientAppender" class="ch.qos.logback.core.FileAppender">
+        <encoder>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%20thread] %-5level %msg%n</pattern>
+        </encoder>
+        <File>${LOGS_DIR}/tg.log</File>
+    </appender>
+
+    <appender name="Bot" class="ch.qos.logback.core.FileAppender">
+        <encoder>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} [%20thread] %-5level %msg%n</pattern>
+        </encoder>
+        <File>${LOGS_DIR}/bot.log</File>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="Console" />
+        <appender-ref ref="Sentry" />
+        <appender-ref ref="FileInfoAppender"/>
+        <appender-ref ref="FileWarnAppender"/>
+        <appender-ref ref="FileErrorAppender"/>
+    </root>
+
+    <logger name="io.cutebot.telegram.TelegramService">
+        <appender-ref ref="TelegramClientAppender"/>
+    </logger>
+
+    <logger name="io.cutebot.doka2.service.BotService">
+        <appender-ref ref="Bot"/>
+    </logger>
+
+</configuration>
